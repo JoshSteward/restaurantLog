@@ -5,7 +5,7 @@ USE restaurants_db;
 
 CREATE TABLE logs (
 	id INT AUTO_INCREMENT NOT NULL,
-    firstName VARCHAR(250) NOT NULL,
+    locationName VARCHAR(250) NOT NULL,
     location VARCHAR(250) NOT NULL, 
     menuItems VARCHAR (250) NOT NULL, 
     thoughts VARCHAR (250) NOT NULL, 
@@ -13,3 +13,16 @@ CREATE TABLE logs (
 		updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id)
 );
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT NOT NULL,
+    firstName VARCHAR(255) NOT NULL,
+    lastName VARCHAR(255) NOT NULL,
+    dob DATE NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(id)
+);
+
