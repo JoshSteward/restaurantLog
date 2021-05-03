@@ -15,4 +15,17 @@ const members = [
         email: "therealchungus@gmail.com",
         password: "lolma61"
     }
-]
+]; 
+
+// Add users to db  
+module.exports = function() {
+    members.forEach(member => {
+        db.user.create({
+            firstName: member.firstName,
+            lastName: member.lastName,
+            dob: member.dob,
+            email: member.email,
+            password: member.password
+        });
+    });
+};
