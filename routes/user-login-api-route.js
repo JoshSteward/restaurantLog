@@ -20,7 +20,7 @@ module.exports = function(app) {
                 isLoggedIn: true,
                 userName: userName, 
                 authorId: req.user.id
-            }).
+            });
         }
     });
 
@@ -38,7 +38,7 @@ module.exports = function(app) {
             res.redirect("/profile");
         })
         .catch(err => {
-            res.status(401).json.(err);
+            res.status(401).json(err);
         });
     });
 }
