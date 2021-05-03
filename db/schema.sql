@@ -1,3 +1,5 @@
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'yes';
+
 DROP DATABASE IF EXISTS restaurants_db;
 CREATE DATABASE restaurants_db;
 
