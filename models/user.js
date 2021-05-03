@@ -44,8 +44,20 @@ module.exports = function(sequilize, DataTypes) {
     });
 
     User.associate = models => {
-        User.hasMany(models.classes, {
-            
-        })
-    }
+        User.hasMany(models.userLogs, {
+            foreignKey: {
+                name: "authorId",
+                allowNull: false
+            },
+            onDelete: "CASCADE"
+        });
+    };
+
+    //check if unhashed passowrd can be compared to hashed password 
+    User.prototype.validPassword = function(password) {
+        return bcrypt.compareSync(password, this.password);
+    };
+
+    //automatically hash user password before the user is created
+    
 }
