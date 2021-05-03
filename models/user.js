@@ -59,5 +59,12 @@ module.exports = function(sequilize, DataTypes) {
     };
 
     //automatically hash user password before the user is created
-    
-}
+    User.addHook("beforeCreate", user => {
+        user.password = bcrypt.hashSync(
+            user.password,
+            bcrypt.genSaltSync(10),
+            null
+        );
+    });
+    return User;
+};
