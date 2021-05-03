@@ -28,4 +28,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //get API routes 
-//some still to be added
+//some still to be added e.g. html-routes
+require("./routes/review-api-route")(app);
+require("./routes/user-login-api-route")(app);
+
+db.sequelize.sync().then(() => {
+    app.listen(PORT, () => {
+      console.log(
+        "Listening on port %s. Visit http://localhost:%s/ in your browser.",
+        PORT,
+        PORT
+      );
+    });
+});
