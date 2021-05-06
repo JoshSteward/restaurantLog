@@ -1,10 +1,13 @@
 const db = require("../models");
 const passport = require("../config/passport");
+const reviewApiRoute = require("./review-api-route");
 
 module.exports = function(app) {
     //login route
     app.post("/api/login", passport.authenticate("local"), (req,res) => {
-        res.json(req.user);
+        if (req.user) {
+            return res.json({id: req.user.id, isAuthenticated: true});
+        }
     });
 
     //get logged in member's data 
