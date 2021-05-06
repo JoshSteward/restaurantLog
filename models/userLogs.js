@@ -3,30 +3,37 @@ module.exports = function(sequilize, DataTypes) {
     const userLogs = sequilize.define(
         "userLogs",
         {
-            title: {
+            locationName: {
                 type:DataTypes.TEXT,
                 allowNull: false,
                 validate: {
                     len: [1, 50]
                 }
             },
-            log: {
+            location: {
                 type:DataTypes.TEXT,
                 allowNull: false,
                 validate: {
                     len: [1, 250]
                 }
             }, 
-            items: {
+            thoughts: {
                 type:DataTypes.TEXT,
                 allowNull: false,
                 validate: {
                     len: [1, 250]
                 }
-            },
-            rating: {
-                type:DataTypes.INTEGER,
+            }, 
+            menuItems: {
+                type:DataTypes.TEXT,
                 allowNull: false,
+                validate: {
+                    len: [1, 250]
+                }
+            //},
+            //rating: {
+                //type:DataTypes.INTEGER,
+                //allowNull: false,
             }
         },
         {freezeTableName: true}

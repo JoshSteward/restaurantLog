@@ -24,6 +24,10 @@ module.exports = function(app) {
         }
     });
 
+    app.get("api/users", (req,res) => {
+        db.user
+    })
+
     //create route for signing up 
     app.post("api/signup", (req,res) => {
         db.user

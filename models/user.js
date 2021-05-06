@@ -46,7 +46,7 @@ module.exports = function(sequilize, DataTypes) {
     User.associate = models => {
         User.hasMany(models.userLogs, {
             foreignKey: {
-                name: "authorId",
+                name: "email",
                 allowNull: false
             },
             onDelete: "CASCADE"
