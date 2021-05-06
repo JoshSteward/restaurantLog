@@ -9,6 +9,8 @@ const passport = require("./config/passport");
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
+db.userLogs.hasMany(db.user, {foreignKey: "userId"})
+db.user.belongsTo(db.userLogs);
 
 // Creating express app and configuring middleware needed for authentication
 const app = express();

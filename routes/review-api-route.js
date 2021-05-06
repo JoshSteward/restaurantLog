@@ -6,7 +6,7 @@ module.exports = function(app) {
     app.get("/api/userLogs", (req,res) => {
         db.userLogs
         .findAll({})
-        .then(dbuserLogs => res.json(userLogs));
+        .then(dbuserLogs => res.json(dbuserLogs));
     });
 
     //route for creating new user logs 

@@ -1,4 +1,7 @@
 //create model for userLogs 
+//import { INTEGER } from "sequelize/types";
+
+
 module.exports = function(sequilize, DataTypes) {
     const userLogs = sequilize.define(
         "userLogs",
@@ -29,23 +32,25 @@ module.exports = function(sequilize, DataTypes) {
                 allowNull: false,
                 validate: {
                     len: [1, 250]
+                },
+            },
+            userId: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
                 }
+        
             //},
             //rating: {
                 //type:DataTypes.INTEGER,
                 //allowNull: false,
-            }
+            
         },
         {freezeTableName: true}
     );
 
-    userLogs.associate = models => {
-        userLogs.belongsTo(models.user, {
-            foreignKey: {
-                name: "userId",
-                allowNull: false
-            }
-        });
-    };
+      
+        
+    
+
     return userLogs;
 };

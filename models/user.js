@@ -43,6 +43,7 @@ module.exports = function(sequilize, DataTypes) {
         },
     });
 
+    /*
     User.associate = models => {
         User.hasMany(models.userLogs, {
             foreignKey: {
@@ -52,6 +53,7 @@ module.exports = function(sequilize, DataTypes) {
             onDelete: "CASCADE"
         });
     };
+    */
 
     //check if unhashed passowrd can be compared to hashed password 
     User.prototype.validPassword = function(password) {
