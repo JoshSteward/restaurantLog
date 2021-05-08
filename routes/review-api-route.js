@@ -1,16 +1,18 @@
 const db = require("../models");
 const userLogs = require("../models/userLogs");
+const router = require("express").Router();
 
-module.exports = function(app) {
+
+module.exports = function(router) {
     //generate route to get the previous user's logs 
-    app.get("/api/userLogs", (req,res) => {
+    router.get("/api/userLogs", (req,res) => {
         db.userLogs
         .findAll({})
         .then(dbuserLogs => res.json(dbuserLogs));
     });
 
     //route for creating new user logs 
-    app.post("/api/add_log", (req,res) => {
+    router.post("/api/add_log", (req,res) => {
         db.userLogs
         .create({
             title: req.body.logTitle,
@@ -26,7 +28,7 @@ module.exports = function(app) {
     });
 
     //route to delete logs based on specific ID
-    app.delete("/api/userLogs:id", (req,res) => {
+    router.delete("/api/userLogs:id", (req,res) => {
         db.userLogs
         .destroy({
             where: {
@@ -37,7 +39,7 @@ module.exports = function(app) {
     });
 
     //route to edit logs 
-    app.put("api/userLogs/:id", (req,res) => {
+    router.put("api/userLogs/:id", (req,res) => {
         db.userLogs
         .update({
             title: req.body.logTitle,
