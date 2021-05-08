@@ -4,11 +4,33 @@ const reviewApiRoute = require("./review-api-route");
 
 module.exports = function(app) {
     //login route
-    app.post("/api/login", passport.authenticate("local"), (req,res) => {
+
+    app.get("/login", (req,res) => {
         if (req.user) {
+            console.log(req.user)
             return res.json({id: req.user.id, isAuthenticated: true});
         }
+        return res.json({isAuthenticated: false});
+    })
+
+    /*
+    app.post("/api/login", passport.authenticate("local"), (req,res) => {
+        if (req.user) {
+            console.log(req.user)
+            return res.json({id: req.user.id, isAuthenticated: true});
+        }
+        return res.json({isAuthenticated: false});
     });
+    */ 
+
+    app.post("/login", passport.authenticate("local", {session:true}), (req,res) => {
+        return res.json(req.user);
+    });
+
+    app.get("/logout", (req,res) => {
+        req.logout();
+        res.redirect("/login");
+    })
 
     //get logged in member's data 
     app.get("/api/user_data", (req,res) => {
