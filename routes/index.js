@@ -9,7 +9,8 @@ router.use("/api", apiRoutes);
 
 //react app 
 router.use(function(req, res) {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+  res.sendFile(path.join(__dirname, "../client/public.index.html"));
+  //console.log(res);
 });
 
 module.exports = router;

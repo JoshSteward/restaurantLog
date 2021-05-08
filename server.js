@@ -24,10 +24,19 @@ app.use(express.static("public"));
 // Compress all responses
 app.use(compression());
 
+//set up session  
+const sess = {
+  secret: "secret",
+  resave: false, 
+  saveUninitialized: false,
+};
+
+app.use(session(sess));
+
 //keep track of login status
-app.use(
-    session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
-);
+//app.use(
+//    session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+//);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -38,9 +47,9 @@ app.use(passport.session());
 //require("./routes/api/user-login-api-route")(router);
 app.use("/", routes);
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
+//app.get('*', (req, res) => {
+//  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+//});
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {
