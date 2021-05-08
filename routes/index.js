@@ -2,7 +2,7 @@ const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
 
-router.use("/api", apiRoutes);
+app.use("/api", apiRoutes);
 
 //react app 
 router.use(function(req, res) {

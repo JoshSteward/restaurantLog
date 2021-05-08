@@ -32,7 +32,7 @@ app.use(passport.session());
 //get API routes 
 //some still to be added e.g. html-routes
 require("./routes/review-api-route")(app);
-require("./routes/user-login-api-route")(app);
+require("./routes/api/user-login-api-route")(app);
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {

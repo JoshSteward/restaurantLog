@@ -1,11 +1,11 @@
-const db = require("../models");
-const passport = require("../config/passport");
-const reviewApiRoute = require("./review-api-route");
+const db = require("../../models");
+const passport = require("../../config/passport");
+const reviewApiRoute = require("../review-api-route");
 
 module.exports = function(app) {
     //login route
 
-    app.get("/login", (req,res) => {
+    router.get("/login", (req,res) => {
         if (req.user) {
             console.log(req.user)
             return res.json({id: req.user.id, isAuthenticated: true});
@@ -23,17 +23,17 @@ module.exports = function(app) {
     });
     */ 
 
-    app.post("/login", passport.authenticate("local", {session:true}), (req,res) => {
+    router.post("/login", passport.authenticate("local", {session:true}), (req,res) => {
         return res.json(req.user);
     });
 
-    app.get("/logout", (req,res) => {
+    router.get("/logout", (req,res) => {
         req.logout();
         res.redirect("/login");
     })
 
     //get logged in member's data 
-    app.get("/api/user_data", (req,res) => {
+    router.get("/api/user_data", (req,res) => {
         //if no user logged in then send back an empty object otherwise send back data
         if (!req.user) {
             res.json({
@@ -49,12 +49,12 @@ module.exports = function(app) {
         }
     });
 
-    app.get("api/users", (req,res) => {
+    router.get("api/users", (req,res) => {
         db.user
     })
 
     //create route for signing up 
-    app.post("api/signup", (req,res) => {
+    router.post("api/signup", (req,res) => {
         db.user
         .create({
             firstName: req.body.firstName,
