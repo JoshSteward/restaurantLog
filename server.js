@@ -4,8 +4,6 @@ const session = require("express-session");
 const compression = require("compression");
 const routes = require("./routes");
 
-
-
 //require passport
 const passport = require("./config/passport");
 
@@ -47,9 +45,10 @@ app.use(passport.session());
 //require("./routes/api/user-login-api-route")(router);
 app.use("/", routes);
 
-//app.get('*', (req, res) => {
-//  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-//});
+const path = require("path")
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {
