@@ -39,16 +39,22 @@ app.use(session(sess));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get('/', (req, res) => {
+  res.send("WELCOME TO RESTAURANT LOG!");
+});
+
 //get API routes 
 //some still to be added e.g. html-routes
 //require("./routes/review-api-route")(app);
 //require("./routes/api/user-login-api-route")(router);
 app.use("/", routes);
 
-const path = require("path")
+
+const path = require("path");
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
+
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {
