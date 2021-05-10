@@ -3,15 +3,13 @@ const userLogs = require("../models/userLogs");
 const router = require("express").Router();
 
 
-module.exports = function(router) {
     //generate route to get the previous user's logs 
-    router.get("/userLogs", (req,res) => {
-        console.log(res);
+    router.route("/userLogs").get((req,res) => {
+        console.log("Working");
         db.userLogs
         .findAll({})
         .then(dbuserLogs => res.json(dbuserLogs));
     });
-    console.log(router);
     //route for creating new user logs 
     router.post("/add_log", (req,res) => {
         db.userLogs
@@ -57,4 +55,5 @@ module.exports = function(router) {
         .then(dbuserLogs => res.json(dbuserLogs))
         .catch(err => res.json(err));
     });
-};
+
+module.exports = router; 
