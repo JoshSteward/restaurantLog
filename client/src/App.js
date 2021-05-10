@@ -13,9 +13,9 @@ function App() {
    <div>
      <Wrapper>
        <Header></Header>
-        <newLog>
-          
-        </newLog>
+       <newLog>
+         
+       </newLog>
         <Footer></Footer>
      </Wrapper>
    </div>

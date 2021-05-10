@@ -6,7 +6,7 @@ export default {
 
     //get all logs from userslog 
     getUserLogs: function(email) {
-        return axios.get("/api/logs/username/${username}")
+        return axios.get("/api/logs/email/${email}")
     },
 
     // Deletes the log with the given id
