@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const userRoutes = require("./user-login-api-route");
 //const authenticationRoute = require("./authentication");
-const logs = require("../review-api-route");
+const APILog = require("../APILog");
 
 router.use("/user", userRoutes);
 // router.use("/user", authenticationRoute);
 
-router.use("/logs", logs);
+router.use("/logs", APILog);
 
 module.exports = router;

@@ -5,14 +5,15 @@ const router = require("express").Router();
 
 module.exports = function(router) {
     //generate route to get the previous user's logs 
-    router.get("/api/userLogs", (req,res) => {
+    router.get("/userLogs", (req,res) => {
+        console.log(res);
         db.userLogs
         .findAll({})
         .then(dbuserLogs => res.json(dbuserLogs));
     });
-
+    console.log(router);
     //route for creating new user logs 
-    router.post("/api/add_log", (req,res) => {
+    router.post("/add_log", (req,res) => {
         db.userLogs
         .create({
             title: req.body.logTitle,
@@ -28,7 +29,7 @@ module.exports = function(router) {
     });
 
     //route to delete logs based on specific ID
-    router.delete("/api/userLogs:id", (req,res) => {
+    router.delete("/userLogs:id", (req,res) => {
         db.userLogs
         .destroy({
             where: {
@@ -39,7 +40,7 @@ module.exports = function(router) {
     });
 
     //route to edit logs 
-    router.put("api/userLogs/:id", (req,res) => {
+    router.put("/userLogs/:id", (req,res) => {
         db.userLogs
         .update({
             title: req.body.logTitle,
