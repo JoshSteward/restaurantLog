@@ -13,7 +13,7 @@ class newLog extends Component {
         locationName: "",
         location: "",
         menuItems: "",
-        thoughts: "",
+        thoughts: ""
     };
 
     componentDidMount() {
@@ -37,7 +37,7 @@ class newLog extends Component {
     handleInputChange = event => {
         const {name, value} = event.target 
         this.setState({
-            [name]:value 
+            [name]: value 
         });
     };
 
@@ -59,7 +59,7 @@ class newLog extends Component {
         return (
             <Container>
                                             <h1>Hello Test</h1>
-
+    
                 <Row>
                     <Col size="md-6">
                         <Card>
@@ -72,7 +72,7 @@ class newLog extends Component {
                                 inputvalue=""
                                 />
                             </form>
-
+    
                             <form>
                                 <div>
                                     <textarea
@@ -110,8 +110,7 @@ class newLog extends Component {
             </Container>
         )
     }
-
-
-}
+    
+};
 
 export default newLog; 
