@@ -24,7 +24,8 @@ app.post("/api/login", passport.authenticate("local"), (req,res) => {
 });
 */ 
 
-router.post("/login", passport.authenticate("local", {session:true}), (req,res) => {
+//passport.authenticate("local", {session:true})
+router.post("/login", (req,res) => {
     return res.json(req.user);
 });
 //login route
@@ -34,7 +35,7 @@ router.get("/logout", (req,res) => {
 })
 
 //get logged in member's data 
-router.get("/api/user_data", (req,res) => {
+router.get("/user_data", (req,res) => {
     //if no user logged in then send back an empty object otherwise send back data
     if (!req.user) {
         res.json({
@@ -50,12 +51,12 @@ router.get("/api/user_data", (req,res) => {
     }
 });
 
-router.get("api/users", (req,res) => {
+router.get("/users", (req,res) => {
     db.user
 })
 
 //create route for signing up 
-router.post("api/signup", (req,res) => {
+router.post("/authenticate/signup", (req,res) => {
     db.user
     .create({
         firstName: req.body.firstName,

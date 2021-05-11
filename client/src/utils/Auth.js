@@ -2,19 +2,19 @@ import axios from "axios";
 
 export default {
     getUser: function() {
-        return axios.get('authentication/user');
+        return axios.get('authenticate/user');
     },
 
     logout: function() {
         console.log('logout');
-        return axios.post('/authentication/logout');
+        return axios.post('/authenticate/logout');
     },
 
     login: function(email, password) {
-        return axios.post('authentication/login', { email, password });
+        return axios.post('api/user/login', { email, password });
     },
 
-    singup: function(userData) {
-        return axios.post('authentication/signup', userData);
+    signup: function(userData) {
+        return axios.post('api/user/authenticate/signup', userData);
     }
 };

@@ -30,16 +30,16 @@ module.exports = function(sequilize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
-            validate: {
-                isEmail: true
-            }
+            //validate: {
+                //isEmail: true
+            //}
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                is: ["^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$"]
-            }
+            allowNull: false
+            //validate: {
+                //is: ["^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$"]
+            //}
         },
     });
 

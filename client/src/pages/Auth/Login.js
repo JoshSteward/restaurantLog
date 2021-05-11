@@ -5,6 +5,7 @@ import Row from "../../components/Row";
 import Card from "../../components/Card";
 import {Input, FormBtn} from "../../components/Form";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Auth from "../../utils/Auth";
  
 
 
@@ -33,13 +34,21 @@ class login extends Component {
                 [event.target.name]: event.target.value
             });
         }
-    
+        
+        //auth.login
         handleSubmit = (event) => {
             event.preventDefault();
             console.log('handleSubmit');
-            this.props.login(this.state.email, this.state.password);
-            this.setState({
-                redirectTo: '/'
+            //this.props.login(this.state.email, this.state.password);
+            Auth.login({
+                email: this.state.email,
+                password: this.state.password
+            }).then(response => {
+                console.log(response);
+                this.setState({
+                    redirectTo: '/'
+            })
+            
             });
         }
 

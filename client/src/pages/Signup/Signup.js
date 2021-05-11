@@ -40,11 +40,11 @@ class Signup extends Component {
                 //insert api
                 //API.signup line
                 Auth.signup({
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                dob: this.state.dob,
-                email: this.state.email,
-                password: this.state.email
+                    firstName: this.state.firstName,
+                    lastName: this.state.lastName,
+                    dob: this.state.dob,
+                    email: this.state.email,
+                    password: this.state.password
             }).then(response => {
                 console.log(response)
                 this.setState({
