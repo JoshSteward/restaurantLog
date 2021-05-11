@@ -20,7 +20,7 @@ class Saved extends Component {
         return (
             <div className="container">
                 <h2>Saved Logs</h2>
-                <Results logs={this.state.savedBooks} />
+                <Results logs={this.state.savedLogs} />
             </div>
         )
     }

@@ -5,6 +5,7 @@ import Row from "../../components/Row";
 import Card from "../../components/Card";
 import {Input, FormBtn} from "../../components/Form";
 import 'bootstrap/dist/css/bootstrap.min.css';
+ 
 
 
 //add link next to redirect
@@ -21,7 +22,7 @@ class login extends Component {
         super();
         
             this.state = {
-                username: '',
+                email: '',
                 password: '',
                 redirectTo: null
             };
@@ -36,7 +37,7 @@ class login extends Component {
         handleSubmit = (event) => {
             event.preventDefault();
             console.log('handleSubmit');
-            this.props.login(this.state.username, this.state.password);
+            this.props.login(this.state.email, this.state.password);
             this.setState({
                 redirectTo: '/'
             });
@@ -47,7 +48,7 @@ class login extends Component {
                 return<Redirect to={{ pathname: this.state.redirectTo}} />
             } else {
                 return (
-                    <div ClassName="login">
+                    <div className="login">
                     <Container className="toBeDone">
 
             <Row className="toBeDone">
@@ -59,8 +60,8 @@ class login extends Component {
                             <label htmlFor="Email: ">Email</label>
                             <Input
                             type="text"
-                            name="Email"
-                            value={this.state.username}
+                            name="email"
+                            value={this.state.email}
                             onChange={this.handleChange}
                             />
                             <label htmlFor="password">Password</label>

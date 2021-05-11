@@ -62,7 +62,7 @@ class Signup extends Component {
             }
 
             return (
-                <div ClassName="login">
+                <div className="login">
                 <Container className="toBeDone">
 
         <Row className="toBeDone">
