@@ -81,8 +81,9 @@ class login extends Component {
                             value={this.state.password}
                             onChange={this.handleChange}
                             />
+                            <br></br>
                             <FormBtn onClick={this.handleSubmit}>Login</FormBtn>
-                            <Link to="/signup">Signup!</Link>
+                            <Link to="/signup" float="middle">Signup</Link>
                         </form>
                     </Card>
                 </Col>
