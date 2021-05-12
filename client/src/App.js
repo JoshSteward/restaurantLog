@@ -10,6 +10,7 @@ import newLog from "./pages/newLog/newLog"
 import React, { Component } from 'react';
 import Auth from "./utils/Auth";
 import API from "./utils/API";
+import { BrowserRouter } from 'react-router-dom';
 
 class App extends Component {
 
@@ -66,13 +67,15 @@ class App extends Component {
 render() {
     return (
     <div>
-      <Wrapper>
-        <Header></Header>
-    <Saved>
-      
-    </Saved>
-          <Footer></Footer>
-      </Wrapper>
+      <BrowserRouter>
+        <Wrapper>
+          <Header></Header>
+            <Login>
+
+            </Login>
+            <Footer></Footer>
+        </Wrapper>
+      </BrowserRouter>
     </div>
     )
   }

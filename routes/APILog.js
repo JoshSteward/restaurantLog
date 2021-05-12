@@ -14,11 +14,11 @@ const router = require("express").Router();
     router.post("/add_log", (req,res) => {
         db.userLogs
         .create({
-            title: req.body.logTitle,
-            log: req.body.logReview,
-            items: req.body.logItems,
-            rating: req.body.rating,
-            authorId: req.body.authorId
+            locationName: req.body.locationName,
+            location: req.body.location,
+            menuItems: req.body.menuItems,
+            thoughts: req.body.thoughts,
+            //authorId: req.body.authorId
         })
         .then(() => res.status(200))
         .catch(err => {
@@ -41,11 +41,11 @@ const router = require("express").Router();
     router.put("/userLogs/:id", (req,res) => {
         db.userLogs
         .update({
-            title: req.body.logTitle,
-            log: req.body.logReview,
-            items: req.body.logItems,
-            rating: req.body.rating,
-            authorId: req.body.authorId
+            locationName: req.body.locationName,
+            location: req.body.location,
+            menuItems: req.body.menuItems,
+            thoughts: req.body.thoughts,
+            //authorId: req.body.authorId
         }, 
         {
             where: {

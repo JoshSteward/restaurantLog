@@ -6,6 +6,7 @@ import Card from "../../components/Card";
 import {Input, FormBtn} from "../../components/Form";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Auth from "../../utils/Auth";
+import Saved from "../Search/Search";
  
 
 
@@ -54,7 +55,7 @@ class login extends Component {
 
         render() {
             if(this.state.redirectTo) {
-                return<Redirect to={{ pathname: this.state.redirectTo}} />
+                return<Redirect to={{ pathname:"Saved", state:this.state.redirectTo}} />
             } else {
                 return (
                     <div className="login">
@@ -81,6 +82,7 @@ class login extends Component {
                             onChange={this.handleChange}
                             />
                             <FormBtn onClick={this.handleSubmit}>Login</FormBtn>
+                            <Link to="/signup">Signup!</Link>
                         </form>
                     </Card>
                 </Col>

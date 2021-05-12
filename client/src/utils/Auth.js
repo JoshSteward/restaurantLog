@@ -15,6 +15,6 @@ export default {
     },
 
     signup: function(userData) {
-        return axios.post('api/user/authenticate/signup', userData);
+        return axios.post('api/user/signup', userData);
     }
 };
