@@ -7,7 +7,7 @@ export default {
 
     logout: function() {
         console.log('logout');
-        return axios.post('/authenticate/logout');
+        return axios.post('/api/user/logout');
     },
 
     login: function(email, password) {

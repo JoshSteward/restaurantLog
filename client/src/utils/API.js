@@ -9,6 +9,11 @@ export default {
         return axios.get("/api/logs/email/${email}")
     },
 
+    //get single log
+    singleLog: function(id) {
+        return axios.get("/api/logs/"+id);
+    },
+
     // Deletes the log with the given id
     deleteLog: function (id) {
         return axios.delete("/api/logs/" + id).then(result => result.data);
@@ -16,13 +21,13 @@ export default {
 
 
     // Saves the new log to the database
-    saveLog: function (logData) {
-        return axios.post("/api/logs", logData).then(result => result.data);
+    saveLog: function (userLog) {
+        return axios.post("/api/logs", userLog);
     },
 
     
     // Get the saved a logs from the database
-    savedLogs: function () {
-        return axios.get("/api/logs").then(result => result.data);
-    }
+    //savedLogs: function () {
+        //return axios.get("/api/logs").then(result => result.data);
+    //}
 };
