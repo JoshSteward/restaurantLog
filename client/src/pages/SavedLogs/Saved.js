@@ -5,6 +5,8 @@ import API from "../../utils/API";
 import Col from "../../components/Col";
 import Row from "../../components/Row";
 import {FormBtn, Input} from "../../components/Form/"
+import List from "../../components/List/List";
+import ListItem from "../../components/ListItem/ListItem";
 
 
 //saved logs state
@@ -31,6 +33,7 @@ class Saved extends Component {
     }
 
     //input delete recipe
+    //111 add delete button 
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -99,13 +102,23 @@ class Saved extends Component {
                     <Col size="md-8">
                         {this.state.logs? (
                             <List>
-                                
+                                {this.state.logs.map(logs => {
+                                    return (
+                                        <ListItem key={logs.id}>
+                                            <a href={"/logs"+logs.id}>
+                                                <h3>{logs.locationName}</h3>
+                                            </a>
+                                        </ListItem>
+                                    );
+                                })}
                             </List>
+                        ) : (
+                            <h3>No Logs</h3>
                         )}
                     </Col>
                 </Row>
             </Container>
-        )
+        );
     }
 }
 
