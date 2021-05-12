@@ -93,9 +93,15 @@ class Saved extends Component {
                             >
                             </Input>
                             <FormBtn>Submit Log</FormBtn>
-                        </form>
+                        </form>    
+                    </Col>
 
-                        
+                    <Col size="md-8">
+                        {this.state.logs? (
+                            <List>
+                                
+                            </List>
+                        )}
                     </Col>
                 </Row>
             </Container>
