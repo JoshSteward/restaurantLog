@@ -4,7 +4,7 @@ import Results from "../../components/Results";
 import API from "../../utils/API";
 import Col from "../../components/Col";
 import Row from "../../components/Row";
-import {FormBtn, Input} from "../../components/Form/"
+import {FormBtn, Input} from "../../components/Form"
 import List from "../../components/List/List";
 import ListItem from "../../components/ListItem/ListItem";
 
