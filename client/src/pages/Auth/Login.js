@@ -7,6 +7,7 @@ import {Input, FormBtn} from "../../components/Form";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Auth from "../../utils/Auth";
 import Saved from "../Search/Search";
+
  
 
 
@@ -15,7 +16,7 @@ import Saved from "../Search/Search";
 //on line 70 add 
 //                            <Link to="/signup">SignUp</Link>
 //when ready 
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link, useHistory } from 'react-router-dom';
 
 
 class login extends Component {
@@ -46,10 +47,7 @@ class login extends Component {
                 password: this.state.password
             }).then(response => {
                 console.log(response);
-                this.setState({
-                    redirectTo: '/'
-            })
-            
+                  this.props.history.push('/'); 
             });
         }
 

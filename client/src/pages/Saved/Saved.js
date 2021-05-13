@@ -48,7 +48,8 @@ class Saved extends Component {
             locationName: this.state.locationName,
             location: this.state.location,
             menuItems: this.state.menuItems,
-            thoughts: this.state.thoughts
+            thoughts: this.state.thoughts,
+            userId: "1"
         })
         .then(res => this.loadLogs())
         .catch(err => console.log(err));
@@ -95,7 +96,7 @@ class Saved extends Component {
                             inputvalue=""
                             >
                             </Input>
-                            <FormBtn>Submit Log</FormBtn>
+                            <FormBtn onClick={this.handleFormSubmit}>Submit Log</FormBtn>
                         </form>    
                     </Col>
 

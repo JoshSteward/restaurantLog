@@ -30,6 +30,7 @@ const fakeAuth = {
 }
 
 
+
 const Public = () => <h3>Public</h3>
 const Private = () => <h3>Private</h3>
 

@@ -1,10 +1,7 @@
-import axios from "axios";
-const url = "http://localhost:3000";
+import {createContext} from 'react';
 
-const authenticateAPI = {
-  authenticated: function() {
-    return axios.get(url + "/api/user/authenticate", {withCredentials: true});
-  },
-};
-
-export default authenticateAPI;
+// set the defaults
+export const AuthContext = createContext({
+  isAuthenticated: false, // User is not logged in by default
+  setIsAuthenticated: () => {} // Provide a function to modify context
+});

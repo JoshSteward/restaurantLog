@@ -11,18 +11,18 @@ const router = require("express").Router();
         .then(dbuserLogs => res.json(dbuserLogs));
     });
     //route for creating new user logs 
-    router.post("/add_log", (req,res) => {
+    router.post("/", (req,res) => {
         db.userLogs
         .create({
             locationName: req.body.locationName,
             location: req.body.location,
             menuItems: req.body.menuItems,
             thoughts: req.body.thoughts,
-            //authorId: req.body.authorId
+            userId: req.body.userId
         })
         .then(() => res.status(200))
         .catch(err => {
-            res.status(401).json(err);
+            res.status(500).json(err);
         });
     });
 
