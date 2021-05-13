@@ -105,7 +105,7 @@ class Saved extends Component {
                                 {this.state.logs.map(logs => {
                                     return (
                                         <ListItem key={logs.id}>
-                                            <a href={"/logs"+logs.id}>
+                                            <a href={"api/logs"+logs.id}>
                                                 <h3>{logs.locationName}</h3>
                                             </a>
                                         </ListItem>

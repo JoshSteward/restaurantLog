@@ -12,12 +12,13 @@ import API from "./utils/API";
 import { BrowserRouter, Route, Link, Redirect, withRouter } from 'react-router-dom';
 import {FormBtn} from "./components/Form";
 import Saved from "./pages/Saved/Saved";
+import authenticateAPI from "./utils/authenticateAPI";
 
 
 //fake authentication
-/*
+
 const fakeAuth = {
-  isAuthenticated: false,
+  isAuthenticated: true,
   authenticate(cb) {
     this.isAuthenticated = true
     setTimeout(cb, 100) // fake async
@@ -27,7 +28,7 @@ const fakeAuth = {
     setTimeout(cb, 100)
   }
 }
-*/
+
 
 const Public = () => <h3>Public</h3>
 const Private = () => <h3>Private</h3>
@@ -44,7 +45,20 @@ const PrivateRoute =({ component: Component, ...rest}) => (
   )}/>
 )
 
+const PublicRoute =({ component: Component, ...rest}) => (
+  <Route{...rest} render={(props) => (
+    fakeAuth.isAuthenticated === false 
+      ?  <Component {...props} />
+      : <Redirect to={{
+        pathname: '/login',
+        state: { from: props.location}
+      }}/>
+
+  )}/>
+)
+
 class LoginApp extends Component {
+
   state = {
     redirectToReferrer:false
   }
@@ -148,11 +162,15 @@ render() {
             <ul>
               <li><Link to='/public'>Public Page</Link></li>
               <li><Link to='/private'>Private Page</Link></li>
+              <li><Link to='/signup'>Signup</Link></li>
+
 
             </ul>
             <Route path='/public' component={Public}></Route>
             <Route path='/login' component={Login}></Route>
             <PrivateRoute path="/private" component={Saved}/>
+            <PublicRoute path='/signup' component={Signup}></PublicRoute>
+
 
               <Footer></Footer>
           </Wrapper>
