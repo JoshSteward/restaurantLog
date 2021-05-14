@@ -49,7 +49,7 @@ class Saved extends Component {
             location: this.state.location,
             menuItems: this.state.menuItems,
             thoughts: this.state.thoughts,
-            userId: "1"
+            userId: this.state.userId
         })
         .then(res => this.loadLogs())
         .catch(err => console.log(err));

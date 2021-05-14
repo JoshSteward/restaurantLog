@@ -36,6 +36,7 @@ function NewLogin() {
   function handleFormSubmit(e) {
     e.preventDefault(); // Avoid reloading page (which is default behaviour upon submit for a form)
     setHasErrorState(false);
+    console.log("button pushed");
     if (formState.email && formState.password) { // Was email and password entered?
       // We make the API call, and if there's a returned object from the server we navigate the user back to the root level and set the context
       Auth.login({

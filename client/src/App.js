@@ -151,7 +151,7 @@ function App() {
             </ul>
             <Route path='/public' component={Public}></Route>
             <Route path='/login' component={NewLogin}></Route>
-            <PrivateRoute path="/private" component={Saved}/>
+            <Route path="/private" component={Saved}/>
             <Route path='/signup' component={Signup}></Route>
 
 

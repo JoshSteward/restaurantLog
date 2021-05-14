@@ -1,10 +1,6 @@
 import axios from "axios";
 
-const axiosInstance = axios.create({
-    baseURL: window.location.host.includes('localhost') ? 'http://localhost:3001' : '',
-    withCredentials: true
-  })
-  
+
   
 //need to link to db 
 
@@ -28,16 +24,8 @@ export default {
 
     // Saves the new log to the database
     saveLog: function (userLog) {
-        return axios.post("/api/logs", userLog);
+        return axios.post("/api/logs/add_log", userLog);
     },
-
-      // Check if user is logged in
-    userLoggedIn: function() {
-    return axiosInstance({
-      method: 'get',
-      url: "/api/user/logged-in",
-    })
-  },
 
     
     // Get the saved a logs from the database

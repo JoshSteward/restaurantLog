@@ -1,5 +1,10 @@
 import axios from "axios";
 
+const axiosInstance = axios.create({
+    baseURL: window.location.host.includes('localhost') ? 'http://localhost:3001' : '',
+    withCredentials: true
+  });
+  
 export default {
     getUser: function() {
         return axios.get('authenticate/user');
@@ -16,5 +21,14 @@ export default {
 
     signup: function(userData) {
         return axios.post('api/user/signup', userData);
-    }
+    },
+
+    // Check if user is logged in
+    userLoggedIn: function() {
+    return axiosInstance({
+      method: 'get',
+      url: "/api/user/logged-in",
+    })
+  },
+    
 };
