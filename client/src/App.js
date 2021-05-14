@@ -12,7 +12,8 @@ import API from "./utils/API";
 import { BrowserRouter, Route, Link, Redirect, withRouter } from 'react-router-dom';
 import {FormBtn} from "./components/Form";
 import Saved from "./pages/Saved/Saved";
-import authenticateAPI from "./utils/authenticateAPI";
+import AuthContext from "./utils/AuthContext";
+import newLogin from "./pages/NewAuth/NewLogin";
 
 
 //fake authentication

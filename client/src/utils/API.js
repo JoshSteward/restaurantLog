@@ -23,6 +23,8 @@ export default {
     // Saves the new log to the database
     saveLog: function (userLog) {
         return axios.post("/api/logs", userLog);
+
+
     },
 
     
