@@ -56,7 +56,7 @@ router.get("/users", (req,res) => {
 })
 
 //create route for signing up 
-router.post("/authenticate/signup", (req,res) => {
+router.post("/signup", (req,res) => {
     db.user
     .create({
         firstName: req.body.firstName,

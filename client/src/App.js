@@ -6,30 +6,14 @@ import Header from "./components/Header";
 import Footer from './components/Footer';
 import Signup from './pages/Signup/Signup'
 import newLog from "./pages/newLog/newLog"
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect, useContext } from 'react';
 import Auth from "./utils/Auth";
 import API from "./utils/API";
-import { BrowserRouter, Route, Link, Redirect, withRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Redirect, withRouter, useHistory } from 'react-router-dom';
 import {FormBtn} from "./components/Form";
 import Saved from "./pages/Saved/Saved";
 import AuthContext from "./utils/AuthContext";
-import newLogin from "./pages/NewAuth/NewLogin";
-
-
-//fake authentication
-
-const fakeAuth = {
-  isAuthenticated: true,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100) // fake async
-  },
-  signout(cb) {
-    this.isAuthenticated = false
-    setTimeout(cb, 100)
-  }
-}
-
+import NewLogin from "./pages/NewAuth/NewLogin";
 
 
 const Public = () => <h3>Public</h3>
@@ -37,7 +21,7 @@ const Private = () => <h3>Private</h3>
 
 const PrivateRoute =({ component: Component, ...rest}) => (
   <Route{...rest} render={(props) => (
-    fakeAuth.isAuthenticated === true 
+    AuthContext.isAuthenticated === true 
       ?  <Component {...props} />
       : <Redirect to={{
         pathname: '/login',
@@ -49,7 +33,7 @@ const PrivateRoute =({ component: Component, ...rest}) => (
 
 const PublicRoute =({ component: Component, ...rest}) => (
   <Route{...rest} render={(props) => (
-    fakeAuth.isAuthenticated === false 
+    AuthContext.isAuthenticated === false 
       ?  <Component {...props} />
       : <Redirect to={{
         pathname: '/login',
@@ -61,11 +45,12 @@ const PublicRoute =({ component: Component, ...rest}) => (
 
 class LoginApp extends Component {
 
+
   state = {
     redirectToReferrer:false
   }
   login = () => {
-    fakeAuth.authenticate(() => {
+    AuthContext.authenticate(() => {
       this.setState(() => ({
         redirectToReferrer:true
       }))
@@ -88,76 +73,72 @@ class LoginApp extends Component {
   }
 }
 
-const AuthButton = withRouter(({ history }) => (
-  fakeAuth.isAuthenticated === true 
-  ? 
-  <p>
-    Welcome! <button onClick={() => {
-    fakeAuth.signout(() => history.push('/'))
-    }}> Sign Out 
-    </button>
-  </p>
-  : 
-  <p>You are not logged in</p>
-))
+function App() {
+  // This allows us to set the user's authentication state in the context object
+  const { setIsAuthenticated } = useContext(AuthContext);
 
-class App extends Component {
+  // State object to store everything from our form
+  const [formState, setFormState] = useState({
+    email: "",
+    password: ""
+  });
 
-  constructor() {
-    super();
-      this.state={
-        loggedIn: false,
-        user:null
-      };
-  }
+  const [hasErrorState, setHasErrorState] = useState(false);
 
-  componentDidMount() {
-    Auth.getUser().then(response => {
-      console.log(response.data);
-      if (!!response.data.user) {
-        this.setState({
-          loggedIn: true,
-          user: response.data.user
-        });
-      } else {
-          this.setState({
-              loggedIn: false,
-              user: null
+  // history hook to use for navigating the user
+  const history = useHistory();
+
+  // if a value in the form changes, we update the state object above
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setFormState({ ...formState, [name]: value.trim() })
+  };
+
+  // handle form submit button clicked
+  function handleFormSubmit(e) {
+    e.preventDefault(); // Avoid reloading page (which is default behaviour upon submit for a form)
+    setHasErrorState(false);
+    if (formState.email && formState.password) { // Was email and password entered?
+      // We make the API call, and if there's a returned object from the server we navigate the user back to the root level and set the context
+      API.userLogin({
+        email: formState.email,
+        password: formState.password
+      })
+        .then(response => {
+          if (response.data.id) {
+            setIsAuthenticated(true);
+            history.push('/');
+          } else {
+            setHasErrorState(true);
+          }
+        })
+        .catch(err => {
+          setFormState({
+            email: "",
+            password: ""
           });
-      }
-    });
-  }
-
-  logout = (event) => {
-    event.preventDefault();
-      Auth.logout().then(response => {
-        console.log("logged out");
-        if (response.status === 200) {
-          this.setState({
-            loggedIn: false,
-            user:null
-          });
+          setHasErrorState(true);
+          console.log(err);
         }
-      });
+        );
+    }
   }
 
-  login = (email, password) => {
-      Auth.login().then(response => {
-        console.log(response);
-        if (response.status === 200) {
-          this.setState({
-            loggedIn: true,
-            user:null
-          });
-        }
-      });
-  }
+  const AuthButton = withRouter(({ history }) => (
+    AuthContext.isAuthenticated === true 
+    ? 
+    <p>
+      Welcome! <button onClick={() => {
+      API.signout(() => history.push('/'))
+      }}> Sign Out 
+      </button>
+    </p>
+    : 
+    <p>You are not logged in</p>
+  ))
 
-
-render() {
-    return (
-    <div>
-        <BrowserRouter>
+  return (
+    <BrowserRouter>
           <Wrapper>
             <AuthButton />
             <Header></Header>
@@ -169,19 +150,16 @@ render() {
 
             </ul>
             <Route path='/public' component={Public}></Route>
-            <Route path='/login' component={Login}></Route>
+            <Route path='/login' component={NewLogin}></Route>
             <PrivateRoute path="/private" component={Saved}/>
-            <PublicRoute path='/signup' component={Signup}></PublicRoute>
+            <Route path='/signup' component={Signup}></Route>
 
 
               <Footer></Footer>
           </Wrapper>
         </BrowserRouter>
-    </div>
-    )
-  }
+  );
 }
 
-
-
 export default App;
+

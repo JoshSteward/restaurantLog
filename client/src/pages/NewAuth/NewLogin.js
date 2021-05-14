@@ -1,7 +1,15 @@
-import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useContext, Component } from "react";
+import { useHistory, Link } from "react-router-dom";
 import API from "../../utils/API"
 import { AuthContext } from "../../utils/AuthContext";
+import Container from "../../components/Container";
+import Col from "../../components/Col";
+import Row from "../../components/Row";
+import Card from "../../components/Card";
+import {Input, FormBtn} from "../../components/Form";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Auth from "../../utils/Auth";
+import Saved from "../Search/Search";
 
 function NewLogin() {
   // This allows us to set the user's authentication state in the context object
@@ -30,7 +38,7 @@ function NewLogin() {
     setHasErrorState(false);
     if (formState.email && formState.password) { // Was email and password entered?
       // We make the API call, and if there's a returned object from the server we navigate the user back to the root level and set the context
-      API.userLogin({
+      Auth.login({
         email: formState.email,
         password: formState.password
       })
@@ -55,32 +63,39 @@ function NewLogin() {
   }
 
   return (
-    <form>
-      <input
-        type="email"
-        onChange={handleInputChange}
-        name="email"
-        label="Email"
-        placeholder="Email (required)"
-        value={formState.email}
-      />
-      <input
-        type="password"
-        onChange={handleInputChange}
-        name="password"
-        label="Password"
-        placeholder="Password (required)"
-        value={formState.password}
-      />
-      <button
-        disabled={!(formState.email && formState.password)}
-        onClick={handleFormSubmit}
-      >
-        Log in
-          </button>
-          
-      { hasErrorState ? <strong>Invalid details, try again</strong> : '' }
-    </form>
+    <Container className="toBeDone">
+
+            <Row className="toBeDone">
+                <Col className="toBeDone" size="md-3"></Col>
+                <Col className="toBeDone" size="md-6">
+                    <Card className="toBeDone" title="Login">
+                        <form className="toBeDone">
+                            <h3>Login Form</h3>
+                            <label htmlFor="Email: ">Email</label>
+                            <Input
+                            type="text"
+                            name="email"
+                            value={formState.email}
+                            onChange={handleInputChange}
+                            />
+                            <label htmlFor="password">Password</label>
+                            <Input
+                            type="password"
+                            name="password"
+                            value={formState.password}
+                            onChange={handleInputChange}
+                            />
+                            <br></br>
+                            <FormBtn onClick={handleFormSubmit}>Login</FormBtn>
+                            <Link to="/signup" float="middle">Signup</Link>
+                        </form>
+                    </Card>
+                </Col>
+                <Col size="md-3"></Col>
+
+            </Row>
+
+                    </Container>
   );
 }
 

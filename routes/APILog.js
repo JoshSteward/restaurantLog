@@ -11,7 +11,7 @@ const router = require("express").Router();
         .then(dbuserLogs => res.json(dbuserLogs));
     });
     //route for creating new user logs 
-    router.post("/", (req,res) => {
+    router.post("/signup", (req,res) => {
         db.userLogs
         .create({
             locationName: req.body.locationName,
