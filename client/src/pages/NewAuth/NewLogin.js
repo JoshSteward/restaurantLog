@@ -1,5 +1,5 @@
 import React, { useState, useContext, Component } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, Redirect } from "react-router-dom";
 import API from "../../utils/API"
 import { AuthContext } from "../../utils/AuthContext";
 import Container from "../../components/Container";
@@ -59,9 +59,12 @@ function NewLogin() {
           setHasErrorState(true);
           console.log(err);
         }
-        );
+        )
     }
   }
+
+   
+
 
   return (
     <Container className="toBeDone">
@@ -99,5 +102,7 @@ function NewLogin() {
                     </Container>
   );
 }
+
+
 
 export default NewLogin;

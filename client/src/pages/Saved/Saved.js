@@ -7,6 +7,8 @@ import Row from "../../components/Row";
 import {FormBtn, Input} from "../../components/Form"
 import List from "../../components/List/List";
 import ListItem from "../../components/ListItem/ListItem";
+import { Redirect } from 'react-router-dom';
+
 
 
 //saved logs state
@@ -52,13 +54,20 @@ class Saved extends Component {
             userId: this.state.userId
         })
         .then(res => this.loadLogs())
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
+        this.setState({
+            redirectTo:"/private"
+        });
     }
     
 
 
     //render using savedBooks state created above 
     render() {
+        if (this.state.redirectTo) {
+            return <Redirect to={{ pathname: this.state.redirectTo }} />
+    
+        }
         return ( 
             <Container>
                 <Row>

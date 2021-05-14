@@ -16,9 +16,11 @@ import AuthContext from "./utils/AuthContext";
 import NewLogin from "./pages/NewAuth/NewLogin";
 
 
+
 const Public = () => <h3>Public</h3>
 const Private = () => <h3>Private</h3>
 
+/*
 const PrivateRoute =({ component: Component, ...rest}) => (
   <Route{...rest} render={(props) => (
     AuthContext.isAuthenticated === true 
@@ -43,9 +45,11 @@ const PublicRoute =({ component: Component, ...rest}) => (
   )}/>
 )
 
-class LoginApp extends Component {
+*/
 
+//class LoginApp extends Component {
 
+/*
   state = {
     redirectToReferrer:false
   }
@@ -72,57 +76,20 @@ class LoginApp extends Component {
     )
   }
 }
+*/
 
 function App() {
-  // This allows us to set the user's authentication state in the context object
-  const { setIsAuthenticated } = useContext(AuthContext);
+  const [isAuthenticated, setIsAuthenticated ] = useState(false);
+  const value = { isAuthenticated, setIsAuthenticated };
 
-  // State object to store everything from our form
-  const [formState, setFormState] = useState({
-    email: "",
-    password: ""
-  });
+  // We check if user is already logged in, and if they are then we set isAuthenticated to true
+  useEffect(() => {
+    Auth.userLoggedIn().then(response => {
+      setIsAuthenticated(response.data.isAuthenticated)
+    })
+  }, []);
 
-  const [hasErrorState, setHasErrorState] = useState(false);
 
-  // history hook to use for navigating the user
-  const history = useHistory();
-
-  // if a value in the form changes, we update the state object above
-  function handleInputChange(event) {
-    const { name, value } = event.target;
-    setFormState({ ...formState, [name]: value.trim() })
-  };
-
-  // handle form submit button clicked
-  function handleFormSubmit(e) {
-    e.preventDefault(); // Avoid reloading page (which is default behaviour upon submit for a form)
-    setHasErrorState(false);
-    if (formState.email && formState.password) { // Was email and password entered?
-      // We make the API call, and if there's a returned object from the server we navigate the user back to the root level and set the context
-      API.userLogin({
-        email: formState.email,
-        password: formState.password
-      })
-        .then(response => {
-          if (response.data.id) {
-            setIsAuthenticated(true);
-            history.push('/');
-          } else {
-            setHasErrorState(true);
-          }
-        })
-        .catch(err => {
-          setFormState({
-            email: "",
-            password: ""
-          });
-          setHasErrorState(true);
-          console.log(err);
-        }
-        );
-    }
-  }
 
   const AuthButton = withRouter(({ history }) => (
     AuthContext.isAuthenticated === true 
@@ -137,8 +104,13 @@ function App() {
     <p>You are not logged in</p>
   ))
 
+
+
   return (
-    <BrowserRouter>
+    <AuthContext.Provider value={value}>
+
+
+        <BrowserRouter>
           <Wrapper>
             <AuthButton />
             <Header></Header>
@@ -151,14 +123,16 @@ function App() {
             </ul>
             <Route path='/public' component={Public}></Route>
             <Route path='/login' component={NewLogin}></Route>
-            <Route path="/private" component={Saved}/>
+            <Route path="/private"/>
+              {isAuthenticated ?
+                <Saved /> : <NewLogin />}
             <Route path='/signup' component={Signup}></Route>
 
 
               <Footer></Footer>
           </Wrapper>
         </BrowserRouter>
-  );
+        </AuthContext.Provider>  );
 }
 
 export default App;
