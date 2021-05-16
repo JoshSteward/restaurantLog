@@ -14,6 +14,8 @@ import {FormBtn} from "./components/Form";
 import Saved from "./pages/Saved/Saved";
 import AuthContext from "./utils/AuthContext";
 import NewLogin from "./pages/NewAuth/NewLogin";
+import Geolocation from './components/Geolocation/Geolocation';
+
 
 
 
@@ -108,8 +110,6 @@ function App() {
 
   return (
     <AuthContext.Provider value={value}>
-
-
         <BrowserRouter>
           <Wrapper>
             <AuthButton />
@@ -131,6 +131,7 @@ function App() {
 
               <Footer></Footer>
           </Wrapper>
+          <Geolocation></Geolocation>
         </BrowserRouter>
         </AuthContext.Provider>  );
 }

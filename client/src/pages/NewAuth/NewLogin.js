@@ -10,6 +10,8 @@ import {Input, FormBtn} from "../../components/Form";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Auth from "../../utils/Auth";
 import Saved from "../Search/Search";
+import "./NewLogin.css";
+import background from "../../Images/LoginPicture.jpeg";
 
 function NewLogin() {
   // This allows us to set the user's authentication state in the context object
@@ -37,10 +39,11 @@ function NewLogin() {
     e.preventDefault(); // Avoid reloading page (which is default behaviour upon submit for a form)
     setHasErrorState(false);
     console.log("button pushed");
+    console.log('form state ', formState);
     if (formState.email && formState.password) { // Was email and password entered?
       // We make the API call, and if there's a returned object from the server we navigate the user back to the root level and set the context
       Auth.login({
-        email: formState.email,
+        username: formState.email,
         password: formState.password
       })
         .then(response => {
@@ -67,7 +70,7 @@ function NewLogin() {
 
 
   return (
-    <Container className="toBeDone">
+    <Container className="toBeDone" style={{backgroundImage: 'url(${background})'}}>
 
             <Row className="toBeDone">
                 <Col className="toBeDone" size="md-3"></Col>

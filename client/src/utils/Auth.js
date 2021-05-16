@@ -16,7 +16,7 @@ export default {
     },
 
     login: function(email, password) {
-        return axios.post('api/user/login', { email, password });
+        return axios.post('api/user/login', { username: email, password });
     },
 
     signup: function(userData) {

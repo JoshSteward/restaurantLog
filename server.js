@@ -6,18 +6,19 @@ const routes = require("./routes");
 
 //require passport
 const passport = require("./config/passport");
+//const passport = require("passport");
 
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
-db.userLogs.hasMany(db.user, {foreignKey: "userId"})
-db.user.belongsTo(db.userLogs);
+// db.User.hasMany(db.User, {foreignKey: "userId"})
+// db.userLogs.belongsTo(db.userLogs);
 
 // Creating express app and configuring middleware needed for authentication
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
+// app.use(express.static("public"));
 
 // Compress all responses
 app.use(compression());
@@ -39,6 +40,7 @@ app.use(session(sess));
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 app.get('/', (req, res) => {
   res.send("WELCOME TO RESTAURANT LOG!");
 });
@@ -47,13 +49,14 @@ app.get('/', (req, res) => {
 //some still to be added e.g. html-routes
 //require("./routes/review-api-route")(app);
 //require("./routes/api/user-login-api-route")(router);
+
 app.use("/", routes);
 
 
 const path = require("path");
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/public/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "./client/public/index.html"));
+// });
 
 
 db.sequelize.sync().then(() => {

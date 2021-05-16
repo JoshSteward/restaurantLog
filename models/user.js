@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 
 //create model for user
 module.exports = function(sequilize, DataTypes) {
-    const User = sequilize.define("user", {
+    const User = sequilize.define("User", {
         firstName: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -67,6 +67,7 @@ module.exports = function(sequilize, DataTypes) {
             bcrypt.genSaltSync(10),
             null
         );
+        return user;
     });
     return User;
 };
