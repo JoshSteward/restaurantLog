@@ -143,12 +143,17 @@ router.post("/signup", (req, res) => {
             password: req.body.password
         })
         .then(() => {
-            res.redirect("/profile");
+            res.redirect("/login");
         })
         .catch(err => {
             res.status(401).json(err);
         });
 });
+
+router.get("/logged-in", (req, res) => {
+    res.json({isAuthenticated:req.isAuthenticated()});
+  });
+  
 
 module.exports = router;
 

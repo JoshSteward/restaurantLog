@@ -36,6 +36,15 @@ app.use(session(sess));
 //app.use(
 //    session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
 //);
+app.use(
+  session({
+    secret: "keyboard cat", 
+    resave: false,
+    saveUninitialized: false, 
+    // Custom store to allow us to store the session in a database so if page is refreshed or backend crashes we can still retrieve the user session. This only works for mongo. For sequelize, you would use this https://www.npmjs.com/package/connect-session-sequelize
+  })
+);
+
 
 app.use(passport.initialize());
 app.use(passport.session());

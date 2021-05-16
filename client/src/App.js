@@ -9,7 +9,7 @@ import newLog from "./pages/newLog/newLog"
 import React, { Component, useState, useEffect, useContext } from 'react';
 import Auth from "./utils/Auth";
 import API from "./utils/API";
-import { BrowserRouter, Route, Link, Redirect, withRouter, useHistory } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Redirect, withRouter, useHistory, Switch } from 'react-router-dom';
 import {FormBtn} from "./components/Form";
 import Saved from "./pages/Saved/Saved";
 import AuthContext from "./utils/AuthContext";
@@ -114,21 +114,19 @@ function App() {
           <Wrapper>
             <AuthButton />
             <Header></Header>
+            <Switch>
             <ul>
               <li><Link to='/public'>Public Page</Link></li>
               <li><Link to='/private'>Private Page</Link></li>
               <li><Link to='/signup'>Signup</Link></li>
-
-
             </ul>
-            <Route path='/public' component={Public}></Route>
-            <Route path='/login' component={NewLogin}></Route>
-            <Route path="/private"/>
+            <Route exact path='/public' component={Public}></Route>
+            <Route exact path='/login' component={NewLogin}></Route>
+            <Route path="/"/>
               {isAuthenticated ?
                 <Saved /> : <NewLogin />}
-            <Route path='/signup' component={Signup}></Route>
-
-
+            <Route exact path='/signup' component={Signup}></Route>
+            </Switch>
               <Footer></Footer>
           </Wrapper>
           <Geolocation></Geolocation>
