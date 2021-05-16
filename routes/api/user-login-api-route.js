@@ -152,6 +152,8 @@ router.post("/signup", (req, res) => {
 
 router.get("/logged-in", (req, res) => {
     res.json({isAuthenticated:req.isAuthenticated()});
+    console.log(req.user);
+    console.log(req.session);
   });
   
 
