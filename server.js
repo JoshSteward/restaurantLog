@@ -3,6 +3,14 @@ const express = require("express");
 const session = require("express-session");
 const compression = require("compression");
 const routes = require("./routes");
+const cors = require("cors");
+
+app.use(cors({
+  credentials: true,
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}));
+
 
 //require passport
 const passport = require("./config/passport");
