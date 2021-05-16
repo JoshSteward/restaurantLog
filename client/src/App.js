@@ -114,7 +114,6 @@ function App() {
           <Wrapper>
             <AuthButton />
             <Header></Header>
-            <Switch>
             <ul>
               <li><Link to='/public'>Public Page</Link></li>
               <li><Link to='/private'>Private Page</Link></li>
@@ -126,7 +125,6 @@ function App() {
               {isAuthenticated ?
                 <Saved /> : <NewLogin />}
             <Route exact path='/signup' component={Signup}></Route>
-            </Switch>
               <Footer></Footer>
           </Wrapper>
           <Geolocation></Geolocation>
