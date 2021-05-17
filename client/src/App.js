@@ -9,7 +9,7 @@ import newLog from "./pages/newLog/newLog"
 import React, { Component, useState, useEffect, useContext } from 'react';
 import Auth from "./utils/Auth";
 import API from "./utils/API";
-import { BrowserRouter, Route, Link, Redirect, withRouter, useHistory, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Redirect, withRouter, useHistory, Switch, Router } from 'react-router-dom';
 import {FormBtn} from "./components/Form";
 import Saved from "./pages/Saved/Saved";
 import AuthContext from "./utils/AuthContext";
@@ -98,7 +98,7 @@ function App() {
     ? 
     <p>
       Welcome! <button onClick={() => {
-      API.signout(() => history.push('/'))
+      Auth.signout(() => history.push('/'))
       }}> Sign Out 
       </button>
     </p>
@@ -109,6 +109,7 @@ function App() {
 
 
   return (
+    
     <AuthContext.Provider value={value}>
         <BrowserRouter>
           <Wrapper>
@@ -129,7 +130,8 @@ function App() {
           </Wrapper>
           <Geolocation></Geolocation>
         </BrowserRouter>
-        </AuthContext.Provider>  );
+        </AuthContext.Provider>  
+        );
 }
 
 export default App;

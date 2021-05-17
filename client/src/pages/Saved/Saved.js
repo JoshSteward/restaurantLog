@@ -8,6 +8,7 @@ import {FormBtn, Input} from "../../components/Form"
 import List from "../../components/List/List";
 import ListItem from "../../components/ListItem/ListItem";
 import { Redirect } from 'react-router-dom';
+import { LogoutBtn } from "../../components/LogoutBtn/LogoutBtn";
 
 
 
@@ -56,7 +57,7 @@ class Saved extends Component {
         .then(res => this.loadLogs())
         .catch(err => console.log(err))
         this.setState({
-            redirectTo:"/private"
+            redirectTo:"/"
         });
     }
     
@@ -106,6 +107,8 @@ class Saved extends Component {
                             >
                             </Input>
                             <FormBtn onClick={this.handleFormSubmit}>Submit Log</FormBtn>
+                            <LogoutBtn>Logout Button</LogoutBtn>
+
                         </form>    
                     </Col>
 
@@ -115,7 +118,7 @@ class Saved extends Component {
                                 {this.state.logs.map(logs => {
                                     return (
                                         <ListItem key={logs.id}>
-                                            <a href={"api/logs"+logs.id}>
+                                            <a href={"api/logs/email/test@test"}>
                                                 <h3>{logs.locationName}</h3>
                                             </a>
                                         </ListItem>

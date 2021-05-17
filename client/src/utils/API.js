@@ -8,7 +8,7 @@ export default {
 
     //get all logs from userslog 
     getUserLogs: function(email) {
-        return axios.get("/api/logs/email/${email}")
+        return axios.get("/api/logs/userId/${userId}")
     },
 
     //get single log
