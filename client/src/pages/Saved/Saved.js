@@ -15,12 +15,9 @@ import { AuthContext } from "../../utils/AuthContext";
 //saved logs state
 class Saved extends Component {
     state = {
-        locationName:"",
-        location: "",
-        menuItems:"",
-        thoughts:"",
-        userId: "",
+        logs: []
     }
+
 
     
     //set state of saved books (variable: function)
@@ -29,11 +26,12 @@ class Saved extends Component {
     }
     
     loadLogs = () => {
-        console.log(this.state);
-        API.getUserLogs(this.props.userId)
-            .then(res => 
-                this.setState({userId: this.context.userId, locationName:"", location:"", menuItems:"", thoughts:""})
-                )
+        console.log("state", this.state);
+        API.getUserLogs()
+            .then(res => {
+                    console.log("res.data", res.data)
+                    this.setState({logs:res.data})
+            })
                 .catch(err => console.log(err));
     }
 
@@ -125,10 +123,11 @@ class Saved extends Component {
                             <List>
                                 {this.state.logs.map(logs => {
                                     return (
-                                        <ListItem key={logs.id}>
-                                            <a href={"api/logs/userId/" + this.state.userId}>
-                                                <h3>{logs.locationName}</h3>
-                                            </a>
+                                        <ListItem key={userId}>
+                                                <h3>Name: {logs.locationName}</h3>
+                                                <h2>Location: {logs.location}</h2>
+                                                <h2>Menu Items: {logs.menuItems}</h2>
+                                                <h2>Thoughts: {logs.thoughts}</h2>
                                         </ListItem>
                                     );
                                 })}

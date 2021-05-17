@@ -8,7 +8,7 @@ export default {
 
     //get all logs from userslog 
     getUserLogs: function(userId) {
-        return axios.get("/api/logs/userId/${userId}")
+        return axios.get("/api/logs/userLogs")
     },
 
     //get single log
