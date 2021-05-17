@@ -52,10 +52,11 @@ class Saved extends Component {
             location: this.state.location,
             menuItems: this.state.menuItems,
             thoughts: this.state.thoughts,
-            userId: this.state.userId
+            userId: this.state.userId,
         })
         .then(res => this.loadLogs())
         .catch(err => console.log(err))
+        console.log(this.state.location);
         this.setState({
             redirectTo:"/"
         });
@@ -118,7 +119,7 @@ class Saved extends Component {
                                 {this.state.logs.map(logs => {
                                     return (
                                         <ListItem key={logs.id}>
-                                            <a href={"api/logs/email/test@test"}>
+                                            <a href={"api/logs/userId/" + this.state.userId}>
                                                 <h3>{logs.locationName}</h3>
                                             </a>
                                         </ListItem>

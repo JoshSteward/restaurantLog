@@ -20,6 +20,7 @@ const router = require("express").Router();
             thoughts: req.body.thoughts,
             userId: req.body.userId
         })
+        .then(dbuserLogs => res.json(dbuserLogs))
         .then(() => res.status(200))
         .catch(err => {
             res.status(500).json(err);
