@@ -47,7 +47,9 @@ function NewLogin() {
         password: formState.password
       })
         .then(response => {
-          if (response.data.id) {
+            console.log("response: ", response);
+            console.log("RESPONSE.DATA.ID: ", response.data.data.id)
+          if (response.data.data.id) {
             setIsAuthenticated(true);
             history.push('/');
           } else {
@@ -67,7 +69,6 @@ function NewLogin() {
   }
 
    
-
 
   return (
     <Container className="toBeDone" style={{backgroundImage: 'url(${background})'}}>
