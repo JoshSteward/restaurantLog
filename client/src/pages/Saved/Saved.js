@@ -126,12 +126,12 @@ class Saved extends Component {
                         {this.state.logs ? (
                             <List>
                                 {this.state.logs.map(logs => {
-                                    for (let i = 0; i <= this.state.logs.length; i++) {
+                                    //for (let i = 0; i <= this.state.logs.length; i++) {
                                         console.log("this.context: ", this.context.userId);
-                                        console.log("i in for: ",i);
+                                        console.log("i in for: ",);
                                         if (this.state.logs[0].userId === this.context.userId) {
                                             console.log("i: ",this.state.logs);
-                                            console.log("state: ", this.state.logs[i].userId);
+                                            console.log("state: ", this.state.logs.userId);
                                             return (
                                                 <ListItem key={userId}>
                                                     <h3>Name: {logs.locationName}</h3>
@@ -142,8 +142,8 @@ class Saved extends Component {
                                                 </ListItem>
                                             ); 
                                         } 
-                                    }
-                                })}
+                                    //}
+                                }).filter(this.state.logs[0].userId === userId.userId)}
                             </List>
                         ) : (
                                 <h3>No Logs</h3>
