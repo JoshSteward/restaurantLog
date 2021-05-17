@@ -9,7 +9,7 @@ import List from "../../components/List/List";
 import ListItem from "../../components/ListItem/ListItem";
 import { Redirect } from 'react-router-dom';
 import { LogoutBtn } from "../../components/LogoutBtn/LogoutBtn";
-
+import { AuthContext } from "../../utils/AuthContext";
 
 
 //saved logs state
@@ -22,15 +22,17 @@ class Saved extends Component {
         userId: "",
     }
 
+    
     //set state of saved books (variable: function)
     componentDidMount() {
         this.loadLogs();
     }
     
     loadLogs = () => {
+        console.log(this.state);
         API.getUserLogs(this.props.userId)
             .then(res => 
-                this.setState({userId: res.data, locationName:"", location:"", menuItems:"", thoughts:""})
+                this.setState({userId: this.context.userId, locationName:"", location:"", menuItems:"", thoughts:""})
                 )
                 .catch(err => console.log(err));
     }
@@ -45,18 +47,21 @@ class Saved extends Component {
         });
       };
 
-    handleFormSubmit = event => {
+    handleFormSubmit = (event, userId) => {
         event.preventDefault();
         API.saveLog({
             locationName: this.state.locationName,
             location: this.state.location,
             menuItems: this.state.menuItems,
             thoughts: this.state.thoughts,
-            userId: this.state.userId,
+            //needs to be come from response.data.data.id
+            userId: this.context.userId
+        })
+        .then(response => {
         })
         .then(res => this.loadLogs())
         .catch(err => console.log(err))
-        console.log(this.state.location);
+        console.log(this.state);
         this.setState({
             redirectTo:"/"
         });
@@ -70,6 +75,8 @@ class Saved extends Component {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
     
         }
+        let userId = this.context;
+        console.log(userId);
         return ( 
             <Container>
                 <Row>
@@ -107,7 +114,7 @@ class Saved extends Component {
                             inputvalue=""
                             >
                             </Input>
-                            <FormBtn onClick={this.handleFormSubmit}>Submit Log</FormBtn>
+                            <FormBtn onClick={(e)=>this.handleFormSubmit(e,this.context.userId)}>Submit Log</FormBtn>
                             <LogoutBtn>Logout Button</LogoutBtn>
 
                         </form>    
@@ -135,5 +142,7 @@ class Saved extends Component {
         );
     }
 }
+
+Saved.contextType=AuthContext;
 
 export default Saved;

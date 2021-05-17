@@ -23,6 +23,11 @@ export default {
         return axios.post('api/user/signup', userData);
     },
 
+
+    getUserId: function() {
+        return axios.get("/api/user/user-id");
+    },
+
     // Check if user is logged in
     userLoggedIn: function() {
     return axiosInstance({

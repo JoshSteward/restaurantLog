@@ -15,7 +15,7 @@ import background from "../../Images/LoginPicture.jpeg";
 
 function NewLogin() {
   // This allows us to set the user's authentication state in the context object
-  const { setIsAuthenticated } = useContext(AuthContext);
+  const { setUserId } = useContext(AuthContext);
 
   // State object to store everything from our form
   const [formState, setFormState] = useState({
@@ -50,7 +50,7 @@ function NewLogin() {
             console.log("response: ", response);
             console.log("RESPONSE.DATA.ID: ", response.data.data.id)
           if (response.data.data.id) {
-            setIsAuthenticated(true);
+            setUserId(response.data.data.id);
             history.push('/');
           } else {
             setHasErrorState(true);

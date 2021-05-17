@@ -81,20 +81,20 @@ const PublicRoute =({ component: Component, ...rest}) => (
 */
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated ] = useState(false);
-  const value = { isAuthenticated, setIsAuthenticated };
+  const [userId, setUserId ] = useState(false);
+  const value = { userId, setUserId };
 
   // We check if user is already logged in, and if they are then we set isAuthenticated to true
   useEffect(() => {
-    Auth.userLoggedIn().then(response => {
-      setIsAuthenticated(response.data.isAuthenticated)
+    Auth.getUserId().then(response => {
+      setUserId(response.data.data.id)
     })
   }, []);
 
 
 
   const AuthButton = withRouter(({ history }) => (
-    AuthContext.isAuthenticated === true 
+    AuthContext.userId 
     ? 
     <p>
       Welcome! <button onClick={() => {
@@ -123,7 +123,7 @@ function App() {
             <Route exact path='/public' component={Public}></Route>
             <Route exact path='/login' component={NewLogin}></Route>
             <Route path="/"/>
-              {isAuthenticated ?
+              {userId ?
                 <Saved /> : <NewLogin />}
             <Route exact path='/signup' component={Signup}></Route>
               <Footer></Footer>

@@ -156,6 +156,9 @@ router.get("/logged-in", (req, res) => {
     console.log(req.session);
   });
   
+  router.get("/user-id", (req,res) => {
+      res.json(req.user);
+  })
 
 module.exports = router;
 

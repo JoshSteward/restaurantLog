@@ -27,6 +27,7 @@ export default {
         return axios.post("/api/logs/add_log", userLog);
     },
 
+
     
     // Get the saved a logs from the database
     //savedLogs: function () {
