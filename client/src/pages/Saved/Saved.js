@@ -19,7 +19,7 @@ class Saved extends Component {
         location: "",
         menuItems:"",
         thoughts:"",
-        email: "",
+        userId: "",
     }
 
     //set state of saved books (variable: function)
@@ -28,9 +28,9 @@ class Saved extends Component {
     }
     
     loadLogs = () => {
-        API.getUserLogs(this.props.email)
+        API.getUserLogs(this.props.userId)
             .then(res => 
-                this.setState({email: res.data, locationName:"", location:"", menuItems:"", thoughts:""})
+                this.setState({userId: res.data, locationName:"", location:"", menuItems:"", thoughts:""})
                 )
                 .catch(err => console.log(err));
     }

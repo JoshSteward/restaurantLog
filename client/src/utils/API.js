@@ -7,7 +7,7 @@ import axios from "axios";
 export default {
 
     //get all logs from userslog 
-    getUserLogs: function(email) {
+    getUserLogs: function(userId) {
         return axios.get("/api/logs/userId/${userId}")
     },
 
