@@ -4,7 +4,7 @@ import Results from "../../components/Results";
 import API from "../../utils/API";
 import Col from "../../components/Col";
 import Row from "../../components/Row";
-import {FormBtn, Input} from "../../components/Form"
+import { FormBtn, Input } from "../../components/Form"
 import List from "../../components/List/List";
 import ListItem from "../../components/ListItem/ListItem";
 import { Redirect } from 'react-router-dom';
@@ -19,20 +19,20 @@ class Saved extends Component {
     }
 
 
-    
+
     //set state of saved books (variable: function)
     componentDidMount() {
         this.loadLogs();
     }
-    
+
     loadLogs = () => {
         console.log("state", this.state);
         API.getUserLogs()
             .then(res => {
-                    console.log("res.data", res.data)
-                    this.setState({logs:res.data})
+                console.log("res.data", res.data)
+                this.setState({ logs: res.data })
             })
-                .catch(err => console.log(err));
+            .catch(err => console.log(err));
     }
 
     //input delete recipe
@@ -41,9 +41,9 @@ class Saved extends Component {
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-          [name]: value
+            [name]: value
         });
-      };
+    };
 
     handleFormSubmit = (event, userId) => {
         event.preventDefault();
@@ -55,86 +55,95 @@ class Saved extends Component {
             //needs to be come from response.data.data.id
             userId: this.context.userId
         })
-        .then(response => {
-        })
-        .then(res => this.loadLogs())
-        .catch(err => console.log(err))
+            .then(response => {
+            })
+            .then(res => this.loadLogs())
+            .catch(err => console.log(err))
         console.log(this.state);
-        this.setState({
-            redirectTo:"/"
-        });
+        //this.setState({
+            //redirectTo: "/"
+        //});
     }
-    
+
 
 
     //render using savedBooks state created above 
     render() {
         if (this.state.redirectTo) {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
-    
+
         }
         let userId = this.context;
         console.log(userId);
-        return ( 
+        return (
             <Container>
                 <Row>
                     <Col size="md-8">
                         <form>
                             <Input
-                            value={this.state.locationName}
-                            onChange={this.handleInputChange}
-                            name="locationName"
-                            placeholder="Restaurant Name"
-                            inputvalue=""
+                                value={this.state.locationName}
+                                onChange={this.handleInputChange}
+                                name="locationName"
+                                placeholder="Restaurant Name"
+                                inputvalue=""
                             >
                             </Input>
                             <Input
-                            value={this.state.location}
-                            onChange={this.handleInputChange}
-                            name="location"
-                            placeholder="Location"
-                            inputvalue=""
+                                value={this.state.location}
+                                onChange={this.handleInputChange}
+                                name="location"
+                                placeholder="Location"
+                                inputvalue=""
                             >
                             </Input>
                             <Input
-                            value={this.state.menuItems}
-                            onChange={this.handleInputChange}
-                            name="menuItems"
-                            placeholder="Menu Items"
-                            inputvalue=""
+                                value={this.state.menuItems}
+                                onChange={this.handleInputChange}
+                                name="menuItems"
+                                placeholder="Menu Items"
+                                inputvalue=""
                             >
                             </Input>
                             <Input
-                            value={this.state.thoughts}
-                            onChange={this.handleInputChange}
-                            name="thoughts"
-                            placeholder="Thoughts"
-                            inputvalue=""
+                                value={this.state.thoughts}
+                                onChange={this.handleInputChange}
+                                name="thoughts"
+                                placeholder="Thoughts"
+                                inputvalue=""
                             >
                             </Input>
-                            <FormBtn onClick={(e)=>this.handleFormSubmit(e,this.context.userId)}>Submit Log</FormBtn>
+                            <FormBtn onClick={(e) => this.handleFormSubmit(e, this.context.userId)}>Submit Log</FormBtn>
                             <LogoutBtn>Logout Button</LogoutBtn>
 
-                        </form>    
+                        </form>
                     </Col>
 
                     <Col size="md-8">
-                        {this.state.logs? (
+                        {this.state.logs ? (
                             <List>
                                 {this.state.logs.map(logs => {
-                                    return (
-                                        <ListItem key={userId}>
-                                                <h3>Name: {logs.locationName}</h3>
-                                                <h2>Location: {logs.location}</h2>
-                                                <h2>Menu Items: {logs.menuItems}</h2>
-                                                <h2>Thoughts: {logs.thoughts}</h2>
-                                        </ListItem>
-                                    );
+                                    for (let i = 0; i <= this.state.logs.length; i++) {
+                                        console.log("this.context: ", this.context.userId);
+                                        console.log("i in for: ",i);
+                                        if (this.state.logs[i].userId === this.context.userId) {
+                                            console.log("i: ",i);
+                                            console.log("state: ", this.state.logs[i].userId);
+                                            return (
+                                                <ListItem key={userId}>
+                                                    <h3>Name: {logs.locationName}</h3>
+                                                    <h2>Location: {logs.location}</h2>
+                                                    <h2>Menu Items: {logs.menuItems}</h2>
+                                                    <h2>Thoughts: {logs.thoughts}</h2>
+
+                                                </ListItem>
+                                            ); 
+                                        } 
+                                    }
                                 })}
                             </List>
                         ) : (
-                            <h3>No Logs</h3>
-                        )}
+                                <h3>No Logs</h3>
+                            )}
                     </Col>
                 </Row>
             </Container>
@@ -142,6 +151,6 @@ class Saved extends Component {
     }
 }
 
-Saved.contextType=AuthContext;
+Saved.contextType = AuthContext;
 
 export default Saved;
