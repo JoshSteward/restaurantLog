@@ -60,6 +60,10 @@ class Saved extends Component {
             .then(res => this.loadLogs())
             .catch(err => console.log(err))
         console.log(this.state);
+        this.setState({
+            locationName:"", location:"", menuItems:"", thoughts:""})
+            window.alert("Entry Submitted!");
+        
         //this.setState({
             //redirectTo: "/"
         //});
@@ -125,8 +129,8 @@ class Saved extends Component {
                                     for (let i = 0; i <= this.state.logs.length; i++) {
                                         console.log("this.context: ", this.context.userId);
                                         console.log("i in for: ",i);
-                                        if (this.state.logs[i].userId === this.context.userId) {
-                                            console.log("i: ",i);
+                                        if (this.state.logs[0].userId === this.context.userId) {
+                                            console.log("i: ",this.state.logs);
                                             console.log("state: ", this.state.logs[i].userId);
                                             return (
                                                 <ListItem key={userId}>
