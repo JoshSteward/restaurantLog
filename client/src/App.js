@@ -86,9 +86,12 @@ function App() {
 
   // We check if user is already logged in, and if they are then we set isAuthenticated to true
   useEffect(() => {
-    Auth.getUserId().then(response => {
-      setUserId(response.data.data.id)
-    })
+    //console.log(response)
+    if(userId != 0) {
+      Auth.getUserId().then(response => {
+        setUserId(response.data.data.id)
+      })
+    } 
   }, []);
 
 

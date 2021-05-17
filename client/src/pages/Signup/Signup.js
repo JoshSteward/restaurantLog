@@ -48,9 +48,8 @@ class Signup extends Component {
             }).then(response => {
                 console.log(response)
                 this.setState({
-                    redirectTo:"/"
-                });
-
+                    locationName:"", location:"", menuItems:"", thoughts:""})
+                    window.alert("Entry Submitted!");
             });
             //check what's coming out
         }
