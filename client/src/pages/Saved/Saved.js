@@ -125,6 +125,7 @@ class Saved extends Component {
                     <Col size="md-8">
                         {this.state.logs ? (
                             <List>
+                                <h2>Previous User Logs</h2>
                                 {this.state.logs.filter(logs => logs.userId === userId.userId)
                                 .map(logs => {
                                     //for (let i = 0; i <= this.state.logs.length; i++) {
@@ -136,9 +137,9 @@ class Saved extends Component {
                                             return (
                                                 <ListItem key={userId}>
                                                     <h3>Name: {logs.locationName}</h3>
-                                                    <h2>Location: {logs.location}</h2>
-                                                    <h2>Menu Items: {logs.menuItems}</h2>
-                                                    <h2>Thoughts: {logs.thoughts}</h2>
+                                                    <h4>Location: {logs.location}</h4>
+                                                    <h4>Menu Items: {logs.menuItems}</h4>
+                                                    <h4>Thoughts: {logs.thoughts}</h4>
 
                                                 </ListItem>
                                             ); 
