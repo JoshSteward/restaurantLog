@@ -79,7 +79,7 @@ const path = require("path");
 //   res.sendFile(path.join(__dirname, "./client/public/index.html"));
 // });
 
-app.use("/", routes);
+app.use(routes);
 
 
 
