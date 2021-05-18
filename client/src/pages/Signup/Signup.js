@@ -46,11 +46,11 @@ class Signup extends Component {
                     email: this.state.email,
                     password: this.state.password
             }).then(response => {
-                console.log(response)
-                this.setState({
-                    locationName:"", location:"", menuItems:"", thoughts:""})
-                    window.alert("Entry Submitted!");
-            });
+                console.log(response)    
+            })
+            this.setState({
+                firstName:"", lastName:"", dob:"", email:"", password:""})
+                window.alert("Entry Submitted!");;
             //check what's coming out
         }
 
