@@ -8,4 +8,10 @@ console.log(router);
 
 router.use("/api", apiRoutes);
 
+router.use(function(req, res) {
+    console.log("no route hit")
+    res.sendFile(path.join(__dirname, "../client/public/index.html"));
+  });
+  
+
 module.exports = router;

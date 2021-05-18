@@ -73,13 +73,15 @@ app.use(passport.session());
 //require("./routes/review-api-route")(app);
 //require("./routes/api/user-login-api-route")(router);
 
-app.use("/", routes);
-
-
 const path = require("path");
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
+
+app.use("/", routes);
+
+
+
 
 
 db.sequelize.sync().then(() => {
