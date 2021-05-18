@@ -71,8 +71,7 @@ function NewLogin() {
    
 
   return (
-    <Container className="toBeDone" style={{backgroundImage: 'url(${background})'}}>
-
+    <Container>
             <Row className="toBeDone">
                 <Col className="toBeDone" size="md-3"></Col>
                 <Col className="toBeDone" size="md-6">

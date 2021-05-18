@@ -84,6 +84,7 @@ class Saved extends Component {
             <Container>
                 <Row>
                     <Col size="md-8">
+                        <h2>Submit New Log</h2>
                         <form>
                             <Input
                                 value={this.state.locationName}

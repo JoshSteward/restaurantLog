@@ -1,3 +1,7 @@
 .toBeDone{ 
     padding: 40px;
 }
+
+.Container{
+    background-image: url(../../Images/LoginPicture.jpeg);
+}
