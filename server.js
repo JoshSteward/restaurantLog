@@ -75,9 +75,9 @@ app.use(passport.session());
 //require("./routes/api/user-login-api-route")(router);
 
 const path = require("path");
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/public/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "./client/public/index.html"));
+// });
 
 app.use("/", routes);
 
