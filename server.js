@@ -76,7 +76,7 @@ app.use(passport.session());
 
 const path = require("path");
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
 
 app.use("/", routes);
