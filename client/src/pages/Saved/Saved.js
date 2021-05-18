@@ -10,6 +10,7 @@ import ListItem from "../../components/ListItem/ListItem";
 import { Redirect } from 'react-router-dom';
 import { LogoutBtn } from "../../components/LogoutBtn/LogoutBtn";
 import { AuthContext } from "../../utils/AuthContext";
+import { ListGroup} from "react-bootstrap";
 
 
 //saved logs state
@@ -136,10 +137,10 @@ class Saved extends Component {
                                             //console.log("state: ", this.state.logs.userId);
                                             return (
                                                 <ListItem key={userId}>
-                                                    <h3>Name: {logs.locationName}</h3>
-                                                    <h4>Location: {logs.location}</h4>
-                                                    <h4>Menu Items: {logs.menuItems}</h4>
-                                                    <h4>Thoughts: {logs.thoughts}</h4>
+                                                    <ListGroup.Item variant="primary">Name: {logs.locationName}</ListGroup.Item>
+                                                    <ListGroup.Item variant="light">Location: {logs.location}</ListGroup.Item>
+                                                    <ListGroup.Item variant="light">Menu Items: {logs.menuItems}</ListGroup.Item>
+                                                    <ListGroup.Item variant="light">Thoughts: {logs.thoughts}</ListGroup.Item>
 
                                                 </ListItem>
                                             ); 
