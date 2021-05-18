@@ -64,9 +64,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.get('/', (req, res) => {
-  res.send("WELCOME TO RESTAURANT LOG!");
-});
+// app.get('/', (req, res) => {
+//   res.send("WELCOME TO RESTAURANT LOG!");
+// });
 
 //get API routes 
 //some still to be added e.g. html-routes
